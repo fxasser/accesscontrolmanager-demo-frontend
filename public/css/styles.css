@@ -1,0 +1,155 @@
+/* 
+   Base theme (default = DARK)
+ */
+:root {
+  /* Allow both, but control palette */
+  color-scheme: dark light;
+
+  /* DARK palette (your vibe) */
+  --bg: #2d241f;
+  --text: #f8f5f2;
+
+  --panel: #3a2f29;
+  --panel-border: rgba(248, 245, 242, 0.14);
+
+  --accent: #e6dccf;        /* cream */
+  --accent-hover: #d6c7b5;  /* darker cream */
+  --accent-text: #1b140f;   /* dark text on cream */
+
+  --link: #f8f5f2;
+  --muted: rgba(248, 245, 242, 0.75);
+  --placeholder: rgba(248, 245, 242, 0.55);
+
+  --focus: rgba(230, 220, 207, 0.25);
+  --shadow: rgba(0, 0, 0, 0.25);
+}
+
+/* 
+   Light theme override
+   Usage: <html data-theme="light">
+ */
+html[data-theme="light"] {
+  color-scheme: light;
+
+  /* LIGHT palette */
+  --bg: #f8f5f2;            /* cream background */
+  --text: #2d241f;          /* dark brown text */
+
+  --panel: #ffffff;
+  --panel-border: rgba(45, 36, 31, 0.18);
+
+  --accent: #2d241f;        /* dark brown buttons */
+  --accent-hover: #3a2f29;  /* slightly lighter/darker brown */
+  --accent-text: #f8f5f2;   /* cream text on brown */
+
+  --link: #2d241f;
+  --muted: rgba(45, 36, 31, 0.78);
+  --placeholder: rgba(45, 36, 31, 0.45);
+
+  --focus: rgba(45, 36, 31, 0.18);
+  --shadow: rgba(0, 0, 0, 0.12);
+}
+
+/* Global element styling */
+html, body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text) !important;
+}
+
+p, label, small, summary, li {
+  color: var(--muted) !important;
+}
+
+a {
+  color: var(--link) !important;
+}
+
+/* Inputs / selects / textareas */
+input,
+select,
+textarea {
+  background: var(--panel) !important;
+  border-color: var(--panel-border) !important;
+  color: var(--text) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--placeholder) !important;
+}
+
+/* Buttons */
+button,
+[type="button"],
+[type="submit"],
+a[role="button"] {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent-text) !important;
+}
+
+button:hover,
+[type="button"]:hover,
+[type="submit"]:hover,
+a[role="button"]:hover {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+  color: var(--accent-text) !important;
+}
+
+/* Focus ring */
+button:focus,
+[type="button"]:focus,
+[type="submit"]:focus,
+a[role="button"]:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem var(--focus) !important;
+}
+
+/* Output panel */
+.output {
+  min-height: 240px;
+  white-space: pre-wrap;
+}
+
+pre.output,
+#output.output {
+  background: var(--panel) !important;
+  border: 1px solid var(--panel-border) !important;
+  color: var(--text) !important;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px var(--shadow);
+  padding: 1rem !important;
+  margin-top: 0.75rem !important;
+}
+
+/* Use system light/dark theme when NOT forcing one */
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) {
+    color-scheme: light;
+
+    --bg: #f8f5f2;
+    --text: #2d241f;
+
+    --panel: #ffffff;
+    --panel-border: rgba(45, 36, 31, 0.18);
+
+    --accent: #2d241f;
+    --accent-hover: #3a2f29;
+    --accent-text: #f8f5f2;
+
+    --link: #2d241f;
+    --muted: rgba(45, 36, 31, 0.78);
+    --placeholder: rgba(45, 36, 31, 0.45);
+
+    --focus: rgba(45, 36, 31, 0.18);
+    --shadow: rgba(0, 0, 0, 0.12);
+  }
+}

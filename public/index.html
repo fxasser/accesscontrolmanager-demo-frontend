@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project Demo Template</title>
+
+  <!-- Pico.css (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <!-- overrides -->
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <h1>Project Demo Template</h1>
+      <p>Reusable static demo UI (Pico.css + vanilla JS) that calls your backend API.</p>
+    </header>
+
+    <section>
+      <label for="dataset">Preset / example input</label>
+      <select id="dataset">
+        <option value="A" selected>Example A</option>
+        <option value="B">Example B</option>
+        <option value="C">Example C</option>
+      </select>
+
+      <div class="grid" style="margin-top: 1rem;">
+        <!-- Keep IDs the same so main.js works -->
+        <button id="btnViolations" type="button">Run Action 1</button>
+        <button id="btnWarnings" type="button">Run Action 2</button>
+        <button id="btnRules" type="button">Run Action 3</button>
+      </div>
+    </section>
+
+    <section style="margin-top: 1rem;">
+      <details>
+        <summary>Run Action 4 (with inputs)</summary>
+
+        <div class="grid" style="margin-top: 1rem;">
+          <label>
+            Param A
+            <input id="user" type="text" placeholder="e.g., user / id / name">
+          </label>
+
+          <label>
+            Param B
+            <input id="action" type="text" placeholder="e.g., action / type">
+          </label>
+
+          <label>
+            Param C
+            <input id="resource" type="text" placeholder="e.g., resource / item">
+          </label>
+        </div>
+
+        <button id="btnPermissions" type="button" style="margin-top: 0.5rem;">Run Action 4</button>
+      </details>
+    </section>
+
+    <section style="margin-top: 1.25rem;">
+      <h2>Output</h2>
+      <pre id="output" class="output">Loading…</pre>
+    </section>
+
+    <footer style="margin-top: 1.25rem; opacity: 0.9;">
+      <small>Built with Pico.css. Template repo for demo frontends.</small>
+    </footer>
+  </main>
+
+  <!-- JS -->
+  <script src="./js/config.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/ui.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>
