@@ -1,28 +1,30 @@
-# Project Demo Template (Static Frontend)
+# AccessControlManager Demo (Static Frontend)
 
-Template repo for building public project demo frontends using **Pico.css** + vanilla JS.
+Public static demo frontend for **AccessControlManager**.  
+This UI calls a **privately hosted backend API** so the coursework backend/source code stays private.
 
-## What’s included
-- Clean static structure (`public/`)
-- `config.js` for API base URL
-- `api.js` fetch wrapper pattern
-- `ui.js` rendering helpers
-- Simple UI layout with an output panel
+## What you can do
+- Get violations report
+- Get warnings report
+- Get all rules report
+- Check permissions for a specific user/action/resource
 
-## How to use
-1. Click **Use this template** to create a new repo.
-2. Update:
-   - `public/js/config.js` (set `API_BASE`)
-   - text in `public/index.html`
-   - endpoint paths in `public/js/api.js`
-3. Deploy the `public/` folder as a static site (Nginx, GitHub Pages, etc.).
-
-## Notes
-Designed to pair with a privately hosted backend API so you can demo projects without exposing private/course code.
+## Datasets
+Preset datasets are small, synthetic CSV inputs (no real patient data):
+- **Dataset A (baseline):** includes violations + warnings + rules
+- **Dataset B (no violations):** violations report shows “No Violations found”
+- **Dataset C (no warnings):** warnings report shows “No Warnings found”
+- **Dataset D (no rules):** rules report shows “No rules exist”; permissions are unknown
 
 ## Configuration
 1. Copy `public/js/config.example.js` to `public/js/config.js`
-2. Edit `public/js/config.js` and set `API_BASE` to backend URL
+2. Set `API_BASE`:
+   - Recommended (same domain proxy): `const API_BASE = "";` and the site calls `/api/...`
+   - Alternate (separate API domain): set `API_BASE` to your API base URL (no trailing slash)
+
+## Deploy
+Deploy the `public/` folder as a static site (e.g., Nginx, GitHub Pages).  
+If using Nginx Proxy Manager, proxy `/api` to your backend wrapper service.
 
 ## Attribution
 - UI styling uses [Pico.css](https://picocss.com/) (loaded via CDN).
