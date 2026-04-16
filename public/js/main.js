@@ -2,19 +2,11 @@ function $(id) {
   return document.getElementById(id);
 }
 
-function firstMissingField(dataset, user, action, resource) {
-  if (!user) return "user";
-  if (!action) return "action";
-  if (!resource) return "resource";
-  return null;
-}
-
 async function run(fn) {
   setLoading(true);
   try {
     const data = await fn();
-    const report =
-      data && data.report !== undefined ? data.report : JSON.stringify(data, null, 2);
+    const report = (data && data.report !== undefined) ? data.report : JSON.stringify(data, null, 2);
     setOutput(report);
   } catch (err) {
     setOutput(`Error: ${err && err.message ? err.message : String(err)}`);
@@ -24,31 +16,25 @@ async function run(fn) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  $("btnViolations").addEventListener("click", () =>
-    run(() => getViolations($("dataset").value))
-  );
-
-  $("btnWarnings").addEventListener("click", () =>
-    run(() => getWarnings($("dataset").value))
-  );
-
-  $("btnRules").addEventListener("click", () =>
-    run(() => getRules($("dataset").value))
-  );
+  $("btnViolations").addEventListener("click", () => run(() => getViolations($("dataset").value)));
+  $("btnWarnings").addEventListener("click", () => run(() => getWarnings($("dataset").value)));
+  $("btnRules").addEventListener("click", () => run(() => getRules($("dataset").value)));
 
   $("btnPermissions").addEventListener("click", () => {
     const dataset = $("dataset").value;
+
     const user = ($("user").value || "").trim();
     const action = ($("action").value || "").trim();
     const resource = ($("resource").value || "").trim();
 
-    const missing = firstMissingField(dataset, user, action, resource);
-    if (missing) {
+    // Frontend validation (prevents confusing backend behavior)
+    if (!user || !action || !resource) {
       setOutput(
-        "Error: Please fill in Username, Action, and Resource before checking permissions."
+        "Please fill out all fields before checking permissions:\n" +
+        `- Username: ${user ? "OK" : "missing"}\n` +
+        `- Action: ${action ? "OK" : "missing"}\n` +
+        `- Resource: ${resource ? "OK" : "missing"}`
       );
-      const el = $(missing);
-      if (el) el.focus();
       return;
     }
 
