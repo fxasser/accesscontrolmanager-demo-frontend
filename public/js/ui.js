@@ -1,7 +1,11 @@
 function setLoading(isLoading) {
-  document.getElementById("loading").style.display = isLoading ? "block" : "none";
+  const el = document.getElementById("loading");
+  if (!el) return;
+  el.style.display = isLoading ? "block" : "none";
 }
 
 function setOutput(text) {
-  document.getElementById("output").textContent = text || "";
+  const out = document.getElementById("output");
+  if (!out) return;
+  out.textContent = text || "";
 }

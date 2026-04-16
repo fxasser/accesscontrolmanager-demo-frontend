@@ -24,5 +24,5 @@ window.addEventListener("DOMContentLoaded", () => {
     run(() => checkPermission($("dataset").value, $("user").value, $("action").value, $("resource").value))
   );
 
-  setOutput("Ready. Set API_BASE in public/js/config.js when your backend is deployed.");
+  setOutput("Ready.");
 });
